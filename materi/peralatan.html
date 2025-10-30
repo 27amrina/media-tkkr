@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teori Dasar Perawatan • Materi</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet"><!-- opsional -->
+
+  <style>
+    :root {
+      --navbar-h: 55px;
+      --footer-h: 30px;
+      /* footer sedikit lebih tinggi agar nyaman */
+      --brand: #ff3f8e;
+      --sidebar-w: 255px;
+      /* samakan dengan lebar sidebar */
+      --sidebar-gap: 1px;
+      /* jarak konten dari sidebar */
+    }
+
+    /* ===== App shell ===== */
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      padding-bottom: var(--footer-h);
+      background: #fff;
+    }
+
+    .main-pad {
+      padding-top: var(--navbar-h);
+    }
+
+    main.app-shell {
+      height: calc(100vh - var(--navbar-h) - var(--footer-h));
+      overflow: hidden;
+    }
+
+    /* ===== Navbar & Footer ===== */
+    .navbar,
+    .footer {
+      background: #fff;
+    }
+
+    .footer {
+      border-top: 1px solid #eee;
+    }
+
+    /* ===== Grid helpers ===== */
+    .no-top-gap>[class^="col-"],
+    .no-top-gap>aside,
+    .no-top-gap>section {
+      padding-top: 0 !important;
+    }
+
+    /* ===== Sidebar ===== */
+    .menu-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, .04);
+    }
+
+    .menu-title {
+      padding: .75rem 1rem;
+      border-bottom: 1px solid #eee;
+      font-weight: 600;
+    }
+
+    .menu-item {
+      display: block;
+      padding: .6rem 1rem;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .menu-item:hover {
+      background: #fafafa;
+    }
+
+    .menu-item.active {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+
+    @media (min-width:768px) {
+      .sidebar-fixed {
+        position: fixed;
+        top: var(--navbar-h);
+        left: 0;
+        width: var(--sidebar-w);
+        height: calc(100vh - var(--navbar-h));
+        overflow-y: auto;
+      }
+
+      .content-with-fixed {
+        margin-left: calc(var(--sidebar-w) + var(--sidebar-gap));
+      }
+    }
+
+    /* ===== Buttons ===== */
+    .btn-brand {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .btn-brand:hover {
+      color: #fff;
+      filter: brightness(.95);
+    }
+
+    /* ===== Layout: hanya area card yang scroll ===== */
+    .content-col {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .content-scroll {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .materi-card .card-header {
+      flex: 0 0 auto;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      padding: .5rem 1rem .4rem !important;
+    }
+
+    .materi-card {
+      display: flex;
+      flex-direction: column;
+      height: 580px;
+    }
+
+    .materi-card .card-body.scrollable {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: auto;
+    }
+
+
+
+    /* Pusatkan isi di dalam sticky-cta */
+    .sticky-cta .content-with-fixed .d-flex {
+      justify-content: center;
+      /* pusat */
+      align-items: center;
+      gap: .5rem;
+      /* jarak antar tombol */
+      flex-wrap: wrap;
+      /* responsif di layar kecil */
+      width: 100%;
+    }
+
+    @media (min-width:768px) {
+      .sticky-cta {
+        left: calc(var(--sidebar-w) + var(--sidebar-gap));
+        right: 12px;
+      }
+    }
+
+    /* ===== Minor polish ===== */
+    .min-vh-0 {
+      min-height: 0 !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVBAR (fixed) -->
+  <nav class="navbar navbar-light navbar-expand-lg fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+        <i class="bi bi-brush" style="font-size:1.25rem; color:var(--brand)"></i>
+        <strong>Pewarnaan Rambut</strong> <span class="fw-normal">• Single Application</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navs">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navs">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="../materi/apersepsi.html">Materi</a></li>
+          <li class="nav-item"><a class="nav-link" href="../latihan.html">Latihan</a></li>
+          <li class="nav-item"><a class="nav-link" href="../kd.html">Kompetensi Dasar</a></li>
+          <li class="nav-item"><a class="nav-link" href="../peta.html">Peta Konsep</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- KONTEN: hanya area card yang scroll -->
+  <main class="main-pad app-shell">
+    <div class="container-fluid ">
+      <div class="row g-1 no-top-gap h-100">
+        <!-- SIDEBAR -->
+        <aside class="d-none d-md-block p-0">
+          <nav class="menu-card sidebar-fixed shadow-sm">
+            <div class="menu-title"><i class="bi bi-journal-bookmark"></i> Materi</div>
+
+            <a class="menu-item" href="./apersepsi.html">
+              <i class="bi bi-lightbulb"></i> Apersepsi
+            </a>
+
+            <!-- TOMBOL INDUK TERBUKA TEORI-->
+            <button class="menu-item active d-flex align-items-center w-100 border-0 bg-transparent" type="button"
+              data-bs-toggle="collapse" data-bs-target="#submenu-teori" aria-expanded="true"
+              aria-controls="submenu-teori" href="./peralatan.html">
+
+              <span class="me-2"><i class="bi bi-droplet-half"></i></span>
+              <span class="flex-grow-1 text-start">A. Teori Dasar</span>
+              <i class="bi bi-chevron-down small"></i>
+            </button>
+
+            <!-- SUBMENU TERBUKA -->
+            <div class="collapse show" id="submenu-teori"> <!-- penting -->
+              <ul class="nav flex-column ps-4 my-1">
+                <li>
+                  <a class="menu-item py-1" href="./teori.html#pengertian"><span>1. Pengertian Pewarnaan</span></a>
+                </li>
+                <li>
+                  <!-- ITEM SEDANG DIBACA -->
+                  <a class="menu-item py-1" href="./teori.html#tujuan">
+                    <span>2. Tujuan Pewarnaan</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="menu-item py-1" href="./teori.html#jenis">3. Jenis Warna</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- TOMBOL INDUK TERBUKA PERALATAN-->
+            <button class="menu-item d-flex align-items-center w-100 border-0 bg-transparent" type="button"
+              data-bs-toggle="collapse" data-bs-target="#submenu-peralatan" aria-expanded="true"
+              aria-controls="submenu-peralatan">
+              <span class="me-2"><i class="bi bi-scissors"></i></span>
+              <span class="flex-grow-1 text-start">B. Peralatan</span>
+              <i class="bi bi-chevron-down small"></i>
+              <a>
+            </button>
+
+            <!-- SUBMENU TERBUKA -->
+            <div class="collapse show" id="submenu-peralatan"> <!-- penting -->
+              <ul class="nav flex-column ps-4 my-1">
+                <li>
+                  <a class="menu-item py-1" href="./peralatan.html#peralatan"><span>1. Peralatan Pewarnaan</span></a>
+                </li>
+                <li>
+                  <!-- ITEM SEDANG DIBACA -->
+                  <a class="menu-item py-1" href="./peralatan.html#kosmetik">
+                    <span>2. Kosmetika untuk Pewarnaan</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </nav>
+        </aside>
+        <!-- KANAN (scroll) -->
+        <section class="col-12 col-md-10 content-col content-with-fixed">
+          <div class="content-scroll">
+            <div class="card shadow-sm materi-card">
+              <div class="card-header d-flex align-items-center gap-2">
+                <i class="bi bi-lightbulb" style="color:var(--brand); font-size:1.25rem;"></i>
+                <div class="d-flex flex-wrap align-items-baseline gap-2">
+                  <h3 class="h5 mb-0 fw-bold">Peralatan dan Kosmetika Untuk Pewarnaan <i>Single Application</i></h3>
+                  <span class="text-muted">• Pewarnaan Rambut (Single Application)</span>
+                </div>
+              </div>
+
+              <div class="card-body scrollable flex-grow-1 min-vh-0" id="apersepsi-hair-coloring">
+
+              </div><!-- /card-body.scrollable -->
+            </div><!-- /card.materi-card -->
+          </div><!-- /content-scroll -->
+        </section>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- CTA tetap di atas footer -->
+  <div class="sticky-cta">
+    <div class="container">
+      <div class="col-12 col-md-10 content-col content-with-fixed mx-auto">
+        <div class="d-flex justify-content-center align-items-center flex-wrap gap-2 w-100">
+          <a class="btn btn-outline-secondary" href="apersepsi.html"><i class="bi bi-arrow-left"></i> Sebelumnya</a>
+          <a class="btn btn-brand" href="peralatan.html">Berikutnya <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer fixed-bottom py-2">
+    <div class="container d-flex justify-content-between align-items-center small">
+      <span>Bootstrap Template • Hair Coloring Theme</span>
+      <span class="text-muted">© 2025 • Single Application</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    //menu
+    document.addEventListener('DOMContentLoaded', function () {
+      const herePath = location.pathname.replace(/\/+$/, '');   // normalisasi
+      const hereHash = location.hash; // contoh: #tujuan
+
+      // Cari semua link di sidebar
+      document.querySelectorAll('.menu-card a.menu-item[href]').forEach(function (a) {
+        const url = new URL(a.href, location.origin);
+        const aPath = url.pathname.replace(/\/+$/, '');
+        const aHash = url.hash; // bisa kosong
+
+        // Kriteria match: path sama, dan jika link punya hash, harus cocok juga
+        const pathMatch = (aPath === herePath);
+        const hashMatch = (!aHash || aHash === hereHash);
+
+        if (pathMatch && hashMatch) {
+          // Tandai aktif + label "Sedang dibaca"
+          a.classList.add('active', 'is-reading');
+          if (!a.querySelector('.badge')) {
+            const badge = document.createElement('span');
+            badge.className = 'badge rounded-pill text-bg-primary-subtle ms-auto';
+            badge.textContent = 'Sedang dibaca';
+            a.classList.add('d-flex', 'align-items-center');
+            a.appendChild(badge);
+          }
+
+          // Buka parent collapse (jika ada)
+          const col = a.closest('.collapse');
+          if (col && !col.classList.contains('show')) {
+            col.classList.add('show');
+            const btn = document.querySelector(`[data-bs-target="#${col.id}"]`);
+            if (btn) btn.setAttribute('aria-expanded', 'true');
+          }
+        }
+      });
+    });
+
+    //selanjutnya
+  </script>
+
+  </script>
+</body>
+
+</html>
