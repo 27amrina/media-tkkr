@@ -2,79 +2,146 @@
 <html lang="id">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Latihan • Pewarnaan Rambut</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <style>
+    /* === Pink–Gray–White Theme (Hair Coloring) === */
     :root {
-      --brand: #e83e8c
+      --brand: #ff3f8e;
+      /* pink */
+      --brand-strong: #db2777;
+      /* deeper pink */
+      --ink: #111827;
+      /* gray-900 */
+      --muted: #6b7280;
+      /* gray-500 */
+      --line: #e5e7eb;
+      /* gray-200 */
+      --soft: #f9fafb;
+      /* gray-50 */
+      --nav-h: 64px;
+      /* real navbar height */
+      --foot-h: 48px;
+      /* real footer height */
+      --radius: 18px;
+      --shadow: 0 8px 24px rgba(0, 0, 0, .08);
     }
 
+    html,
+    body {
+      height: 100%;
+      background: var(--soft);
+      color: var(--ink);
+    }
+
+    a {
+      text-decoration: none
+    }
+
+    /* NAVBAR */
     .navbar {
-      background: #fff
+      background: #fff !important;
+      border-bottom: 1px solid var(--line);
+      height: var(--nav-h);
     }
 
-    .main-pad {
-      padding-top: 4.25rem
+    .navbar .nav-link {
+      color: var(--ink) !important
     }
 
+    .navbar .nav-link.active,
+    .navbar .nav-link:hover {
+      color: var(--brand) !important
+    }
+
+    .navbar-brand span {
+      color: #f472b6 !important
+    }
+
+
+    /* MAIN spacing accounts for fixed nav + fixed footer */
+    main {
+      padding-top: calc(var(--nav-h) + 28px);
+      padding-bottom: calc(var(--foot-h) + 28px);
+    }
+
+    /* CARDS */
+    .card {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .card-body {
+      background: #fff;
+      padding: 1.75rem;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow);
+    }
+
+    /* QUIZ UI */
     .number-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: .5rem
-    }
-
-    .menu-item {
-      display: block;
-      padding: .6rem 1rem;
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .menu-item:hover {
-      background: #fafafa;
-    }
-
-    .menu-item.active {
-      background: #f5f5f5;
-      font-weight: 600;
+      gap: .5rem;
     }
 
     .num {
       border: 1px solid #dee2e6;
-      border-radius: .5rem;
+      border-radius: .6rem;
       padding: .5rem 0;
-      font-weight: 600
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
     }
 
-    .num.white {
+    .num--white {
       background: #fff;
-      color: #212529
+      color: #212529;
     }
 
-    .num.orange {
+    .num--orange {
       background: #ffc107;
-      color: #212529
+      color: #212529;
     }
 
-    .num.green {
+    .num--green {
       background: #198754;
-      color: #fff
+      color: #fff;
     }
 
     .option {
-      border: 1px solid #dee2e6;
+      border: 1px solid #e5e7eb;
       border-radius: .75rem;
       padding: .75rem 1rem;
       width: 100%;
-      text-align: left
+      text-align: left;
+      transition: box-shadow .15s, border-color .15s;
+    }
+
+    .option:hover {
+      border-color: var(--brand);
     }
 
     .option.active {
       border-color: #198754;
-      box-shadow: 0 0 0 .2rem rgba(25, 135, 84, .25)
+      box-shadow: 0 0 0 .2rem rgba(25, 135, 84, .25);
+    }
+
+    .badge-soft {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    @media (max-width: 576px) {
+      .number-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
   </style>
 </head>
@@ -86,22 +153,24 @@
         <i class="bi bi-brush" style="font-size:1.25rem; color:var(--brand)"></i>
         <strong>Pewarnaan Rambut</strong> <span class="fw-normal">• Single Application</span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navs">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navs"
+        aria-label="Buka menu">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navs">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
-          <li class="nav-item"><a class="nav-link" href="materi/apersepsi.html">Materi</a></li>
-          <li class="nav-item active"><a class="nav-link" href="latihan.html">Latihan</a></li>
-          <li class="nav-item"><a class="nav-link" href="kd.html">Kompetensi Dasar</a></li>
+          <li class="nav-item"><a class="nav-link" href="materi/teori.html">Materi</a></li>
+          <li class="nav-item"><a class="nav-link active fw-semibold" style="color:var(--brand)"
+              href="latihan.html">Latihan</a></li>
+          <li class="nav-item"><a class="nav-link" href="kd.html">Tujuan Pembelajaran</a></li>
           <li class="nav-item"><a class="nav-link" href="peta.html">Peta Konsep</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <main class="main-pad">
+  <main>
     <div class="container">
       <div class="row g-4">
         <!-- Kiri: Soal -->
@@ -110,13 +179,13 @@
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center mb-2">
                 <div class="d-flex align-items-center gap-2">
-                  <span class="badge text-bg-light" id="position">Soal 1/25</span>
-                  <span class="badge text-bg-secondary" id="timer">60:00</span>
+                  <span class="badge badge-soft" id="position">Soal 1/25</span>
+                  <span class="badge text-bg-secondary" id="timer" aria-live="polite">60:00</span>
                 </div>
                 <small class="text-muted" id="progress">0/25 terjawab</small>
               </div>
               <h5 id="question" class="mb-3"></h5>
-              <div id="choices" class="vstack gap-2"></div>
+              <div id="choices" class="vstack gap-2" role="group" aria-label="Pilihan jawaban"></div>
               <div class="d-flex justify-content-between mt-4 flex-wrap gap-2">
                 <div class="d-flex gap-2">
                   <a href="index.html" class="btn btn-outline-secondary btn-sm"><i class="bi bi-house"></i> Halaman
@@ -139,7 +208,7 @@
             <div class="card-body">
               <h6 class="mb-3 d-flex justify-content-between align-items-center">
                 <span><i class="bi bi-grid-3x3-gap me-1" style="color:var(--brand)"></i>Nomor Soal</span>
-                <span class="small text-muted">Pool 50 • Ditampilkan 25</span>
+                <span class="small text-muted"><span id="totalLabel">25</span> Soal</span>
               </h6>
               <div class="number-grid" id="numberGrid"></div>
               <hr />
@@ -154,6 +223,15 @@
       </div>
     </div>
   </main>
+
+  <!-- FOOTER -->
+  <footer class="footer fixed-bottom py-2"
+    style="background:#fff; border-top:1px solid var(--line); height:var(--foot-h);">
+    <div class="container d-flex justify-content-between align-items-center small" style="height:100%">
+      <span>SMKS ISFI BANJARMASIN • Hair Coloring</span>
+      <span class="text-muted">© 2025 • Single Application</span>
+    </div>
+  </footer>
 
   <script>
     // ====== Konfigurasi ======
@@ -187,7 +265,7 @@
       { q: 'Tanda over-processing antara lain…', c: ['Rambut terasa kering/rapuh', 'Warna terlalu dingin', 'Kulit kepala lembab', 'Rambut semakin lemas & sehat'], a: 0 },
       { q: 'Saat meratakan warna dari pertengahan hingga ujung, teknik yang sering dipakai…', c: ['Feathering/drag through', 'Backcombing kuat', 'Teasing penuh', 'Twist ketat'], a: 0 },
       { q: 'Setelah selesai, bilasan yang disarankan…', c: ['Air panas sekali', 'Air hangat lalu kondisioner', 'Tidak perlu kondisioner', 'Shampoo anti-ketombe kuat'], a: 1 },
-      // --- 25 soal tambahan placeholder (silakan ganti kontennya) ---
+      // Placeholder 26-50
       { q: '[Placeholder] Pengetahuan pewarnaan 26', c: ['A', 'B', 'C', 'D'], a: 0 },
       { q: '[Placeholder] Pengetahuan pewarnaan 27', c: ['A', 'B', 'C', 'D'], a: 1 },
       { q: '[Placeholder] Pengetahuan pewarnaan 28', c: ['A', 'B', 'C', 'D'], a: 2 },
@@ -232,6 +310,7 @@
       return arr.slice(0, k);
     }
     function $(id) { return document.getElementById(id) }
+    function pad(n) { return String(n).padStart(2, '0') }
 
     // ====== Bootstrap State ======
     let indices = JSON.parse(localStorage.getItem(KEY_INDICES) || 'null');
@@ -264,6 +343,8 @@
     const posEl = $('position');
     const progEl = $('progress');
     const timerEl = $('timer');
+    const totalLabel = $('totalLabel');
+    totalLabel.textContent = SHOW_COUNT;
 
     function save() {
       localStorage.setItem(KEY_ANS, JSON.stringify(answers));
@@ -271,7 +352,6 @@
     }
 
     function countAnswered() { return answers.filter(v => v !== null).length }
-
     function itemAt(idx) { return pool[indices[idx]]; }
 
     function renderQuestion() {
@@ -283,9 +363,19 @@
       item.c.forEach((opt, idx) => {
         const btn = document.createElement('button');
         btn.className = 'option btn btn-light';
+        btn.type = 'button';
+        btn.setAttribute('aria-pressed', answers[current] === idx ? 'true' : 'false');
         btn.innerHTML = `<div class="d-flex align-items-center gap-2"><span class="badge text-bg-light">${String.fromCharCode(65 + idx)}</span><span>${opt}</span></div>`;
         if (answers[current] === idx) btn.classList.add('active');
-        btn.addEventListener('click', () => { if (done) return; answers[current] = idx; save(); renderQuestion(); renderNumbers(); updateFinishEnabled(); updateNavButtons(); });
+        btn.addEventListener('click', () => {
+          if (done) return;
+          answers[current] = idx;
+          save();
+          renderQuestion();
+          renderNumbers();
+          updateFinishEnabled();
+          updateNavButtons();
+        });
         choicesEl.appendChild(btn);
       });
       renderNumbers();
@@ -293,15 +383,20 @@
       updateNavButtons();
     }
 
+    function classForNum(i) {
+      if (i === current && answers[i] !== null) return 'num num--orange';
+      if (answers[i] !== null) return 'num num--green';
+      if (i === current) return 'num num--orange';
+      return 'num num--white';
+    }
+
     function renderNumbers() {
       gridEl.innerHTML = '';
       for (let i = 0; i < SHOW_COUNT; i++) {
         const el = document.createElement('button');
-        el.className = 'num white';
+        el.type = 'button';
+        el.className = classForNum(i);
         el.textContent = i + 1;
-        if (i === current) el.className = 'num orange';
-        if (answers[i] !== null) el.className = 'num green';
-        if (i === current && answers[i] !== null) el.className = 'num orange';
         el.addEventListener('click', () => { if (done) return; current = i; save(); renderQuestion(); });
         gridEl.appendChild(el);
       }
@@ -367,7 +462,6 @@
       document.getElementById('printBtn').addEventListener('click', () => window.print());
 
       // Countdown tombol ulang
-      function pad(n) { return String(n).padStart(2, '0'); }
       function tickRetry() {
         const end = Number(localStorage.getItem(KEY_COOL) || coolEnd);
         const remain = Math.max(0, end - Date.now());
@@ -395,7 +489,6 @@
     $('finishBtn').addEventListener('click', () => { if (countAnswered() >= SHOW_COUNT && !done) showResult('manual'); });
 
     // ====== Timer ======
-    function pad(n) { return String(n).padStart(2, '0') }
     function tick() {
       const remain = Math.max(0, endTime - Date.now());
       const s = Math.floor(remain / 1000);
